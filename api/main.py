@@ -63,13 +63,13 @@ def new_annotations(numpydata):
     img =cv2.cvtColor(new_np, cv2.COLOR_BGR2RGB)
     img = cv2.resize(img, (854, 480))
     # return img
-    cv2.imwrite('/Users/rishisaginala/Downloads/potato-disease-classification-main/uploads/result.png',img)
+    cv2.imwrite('/Users/rishisaginala/Downloads/autosurgery/uploads/result.png',img)
     return img
 
 def result(x):
-    m=cv2.imread('/Users/rishisaginala/Downloads/potato-disease-classification-main/uploads/myphoto.png')
+    m=cv2.imread('/Users/rishisaginala/Downloads/autosurgery/uploads/myphoto.png')
 # m=cv2.resize(m, (128, 128))
-    o=cv2.imread('/Users/rishisaginala/Downloads/potato-disease-classification-main/uploads/result.png')
+    o=cv2.imread('/Users/rishisaginala/Downloads/autosurgery/uploads/result.png')
     inp = np.zeros((480,854,3)).astype('uint8')
     for x in range(480):
         for y in range(854):
@@ -78,14 +78,14 @@ def result(x):
             inp[x][y][2]=m[x][y][2]/2+o[x][y][2]/2
     # img =cv2.cvtColor(inp, cv2.COLOR_BGR2RGB)
     img = cv2.resize(inp, (854, 480))
-    cv2.imwrite('/Users/rishisaginala/Downloads/potato-disease-classification-main/frontend/src/help.png',img)
+    cv2.imwrite('/Users/rishisaginala/Downloads/autosurgery/frontend/src/help.png',img)
     print("hello2")
     return img
 
 def read_file_as_image(data):
     image = Image.open(BytesIO(data))
     print(image.size)
-    image.save('/Users/rishisaginala/Downloads/potato-disease-classification-main/uploads/myphoto.png')
+    image.save('/Users/rishisaginala/Downloads/autosurgery/uploads/myphoto.png')
     # image = n p.array(image)
     # print(image.shape)
     return image
@@ -96,7 +96,7 @@ async def predict(
 ):
     read_file_as_image(await file.read())
 
-    test_img = cv2.imread('/Users/rishisaginala/Downloads/potato-disease-classification-main/uploads/myphoto.png')
+    test_img = cv2.imread('/Users/rishisaginala/Downloads/autosurgery/uploads/myphoto.png')
     test_img = cv2.cvtColor(test_img,cv2.COLOR_BGR2RGB)
     test_img = cv2.resize(test_img, (128, 128))
     test_img = Image.fromarray(test_img)
@@ -111,7 +111,7 @@ async def predict(
     img=new_annotations(predicted_img)
     img=result('x')
     # img=cv2.imread('/Users/rishisaginala/Downloads/potato-disease-classification-main/uploads/help.png')
-    with open('/Users/rishisaginala/Downloads/potato-disease-classification-main/uploads/help.png', 'rb') as open_file:
+    with open('/Users/rishisaginala/Downloads/autosurgery/uploads/help.png', 'rb') as open_file:
         byte_content = open_file.read()
     base64_bytes = b64encode(byte_content)
     base64_string = base64_bytes.decode('utf-8')
